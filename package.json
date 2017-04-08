@@ -1,7 +1,7 @@
 {
-  "name": "web-dev",
+  "name": "rugby-app",
   "version": "1.0.0",
-  "description": "Web Dev at Northeastern University",
+  "description": "CS 3200",
   "main": "server.js",
   "dependencies": {
     "body-parser": "^1.15.1",
@@ -13,6 +13,6 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
   },
-  "author": "Jose G. Annunziato",
+  "author": "Howard Cheung, Grant Merrill",
   "license": "ISC"
 }
