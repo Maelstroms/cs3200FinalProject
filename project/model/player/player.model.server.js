@@ -40,6 +40,7 @@ module.exports = function() {
     }
 
     function updatePlayer(pid, player) {
+
         var deferred = q.defer();
         PlayerModel.update({"_id": pid}, {$set: player}, {multi: true}, function(err, player) {
             if (err) {
@@ -47,6 +48,30 @@ module.exports = function() {
             }
             else {
                 deferred.resolve(player);
+            }
+        });
+        return deferred.promise;
+    }
+
+    function findPlayer(pid) {
+        var deferred = q.defer();
+        PlayerModel.findOne({'_id': pid}, function(err,player) {
+            if (err) {
+                deferred.reject(err);
+            } else {
+                deferred.resolve(player);
+            }
+        });
+        return deferred.promise;
+    }
+
+    function findAllPlayers(){
+        var deferred = q.defer();
+        PlayerModel.find({},function(err,players){
+            if(err){
+                deferred.reject(err);
+            }else{
+                deferred.resolve(players);
             }
         });
         return deferred.promise;
