@@ -10,5 +10,5 @@ module.exports = function(){
         },
         {collection : 'rugby.game'});
 
-    return PlayerSchema;
+    return GameSchema;
 };

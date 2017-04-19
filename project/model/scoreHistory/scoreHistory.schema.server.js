@@ -9,5 +9,5 @@ module.exports = function(){
         },
         {collection : 'rugby.scoreHistory'});
 
-    return PlayerSchema;
+    return ScoreHistorySchema;
 };

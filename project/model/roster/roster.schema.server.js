@@ -1,10 +1,10 @@
 module.exports = function(){
     var mongoose = require("mongoose");
 
-    var PlayerSchema = mongoose.Schema({
+    var RosterSchema = mongoose.Schema({
             name : String
         },
-        {collection : 'rugby.players'});
+        {collection : 'rugby.roster'});
 
-    return PlayerSchema;
+    return RosterSchema;
 };

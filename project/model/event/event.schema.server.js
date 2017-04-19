@@ -7,5 +7,5 @@ module.exports = function(){
         },
         {collection : 'rugby.event'});
 
-    return PlayerSchema;
+    return EventSchema;
 };

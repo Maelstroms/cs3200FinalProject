@@ -3,12 +3,12 @@ module.exports = function(){
 
     var BlogSchema = mongoose.Schema({
             id : Number,
-            date: Time,
+            date: Date,
             type: String,
             content: String
 
         },
         {collection : 'rugby.blog'});
 
-    return PlayerSchema;
+    return BlogSchema;
 };

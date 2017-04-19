@@ -7,5 +7,5 @@ module.exports = function(){
         },
         {collection : 'rugby.playerHistory'});
 
-    return PlayerSchema;
+    return PlayerHistorySchema;
 };
