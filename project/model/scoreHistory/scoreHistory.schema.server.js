@@ -2,10 +2,10 @@ module.exports = function(){
     var mongoose = require("mongoose");
 
     var ScoreHistorySchema = mongoose.Schema({
-            id : String,
+            id : Number,
             // game:
             //player:
-            minute: int
+            minute: Number
         },
         {collection : 'rugby.scoreHistory'});
 

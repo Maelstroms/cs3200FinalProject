@@ -2,7 +2,7 @@ module.exports = function(){
     var mongoose = require("mongoose");
 
     var EventSchema = mongoose.Schema({
-            id : Int,
+            id : Number,
             date : Date
         },
         {collection : 'rugby.event'});

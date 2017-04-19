@@ -2,7 +2,7 @@ module.exports = function(){
     var mongoose = require("mongoose");
 
     var BlogSchema = mongoose.Schema({
-            id : Int,
+            id : Number,
             date: Time,
             type: String,
             content: String

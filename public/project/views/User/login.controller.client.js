@@ -15,7 +15,8 @@
                 .then(function (response) {
                     var user = response.data;
                     if (user._id) {
-                        $location.url("/profile/" + user._id);
+                        
+                        $location.url("/player");
                     } else {
                         vm.error = "User not found";
                     }

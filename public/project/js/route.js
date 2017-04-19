@@ -12,7 +12,17 @@
                 // controller: 'PlayerListController',
                 controllerAs: 'model'
             })
-            .when("/login/:pid", {
+            .when("/register", {
+                templateUrl: "views/user/register.view.client.html",
+                controller: "RegisterController",
+                controllerAs: "model"
+            })
+            .when("/player", {
+                templateUrl: "views/players/player-list.view.client.html",
+                controller: 'PlayerListController',
+                controllerAs: 'model'
+            })
+            .when("/player/:pid", {
                 templateUrl: "views/players/player-edit.view.client.html",
                 controller: 'PlayerEditController',
                 controllerAs: 'model'
