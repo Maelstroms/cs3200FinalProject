@@ -12,31 +12,31 @@
             </div>
             <div class="navbar-header">
                 <a class="navbar-brand no-left-padding no-left-margin">
-                    Player List
+                    Activity List
                 </a>
             </div>
         </div>
     </nav>
-    <input ng-model="model.player.name" class="form-control"/>
+    <input ng-model="model.activity.name" class="form-control"/>
     <a class="btn btn-primary btn-block"
-       ng-click="model.createPlayer(model.player)">
+       ng-click="model.createActivity(model.activity)">
         Create
     </a>
     <br>
     <ul class="list-group">
-        <div ng-repeat="player in model.players">
+        <div ng-repeat="activity in model.activitys">
             <li class="list-group-item">
                 <div class="row">
                     <div class="col-xs-10">
-                        {{player.name}}
+                        {{activity.name}}
                     </div>
                     <div class="col-xs-1">
-                        <a href="#!/player/{{player._id}}">
+                        <a href="#!/activity/{{activity._id}}">
                             <span class="glyphicon glyphicon-cog pull-right"></span>
                         </a>
                     </div>
                     <div class="col-xs-1">
-                        <a ng-click="model.deletePlayer(player._id)" href="#!/login">
+                        <a ng-click="model.deleteActivity(activity._id)" href="#!/login">
                             <span class="glyphicon glyphicon-remove pull-right"></span>
                         </a>
                     </div>

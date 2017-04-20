@@ -1,62 +1,62 @@
 (function() {
     angular
         .module("WebAppMaker")
-        .controller("PlayerListController", PlayerListController)
-        .controller("PlayerEditController", PlayerEditController);
+        .controller("BlogListController", BlogListController)
+        .controller("BlogEditController", BlogEditController);
 
-    function PlayerListController(PlayerService) {
+    function BlogListController(BlogService) {
         var vm = this;
-        vm.createPlayer = createPlayer;
-        vm.deletePlayer = deletePlayer;
+        vm.createBlog = createBlog;
+        vm.deleteBlog = deleteBlog;
 
         function init() {
-            var promise = PlayerService.findAllPlayers();
+            var promise = BlogService.findAllBlogs();
             promise.then(function(res) {
-                vm.players = res.data;
+                vm.blogs = res.data;
             });
         }
         init();
 
-        function createPlayer(player) {
-            var promise = PlayerService.createPlayer(player);
+        function createBlog(blog) {
+            var promise = BlogService.createBlog(blog);
             promise.then(function(_) {
                 init()
             });
         }
 
 
-        function deletePlayer(pid) {
-            var promise = PlayerService.deletePlayer(pid);
+        function deleteBlog(pid) {
+            var promise = BlogService.deleteBlog(pid);
             promise.then(function(_) {
                 init()
             });
         }
     }
 
-    function PlayerEditController(PlayerService, $routeParams) {
+    function BlogEditController(BlogService, $routeParams) {
         var vm = this;
-        vm.playerId = $routeParams["pid"];
+        vm.blogId = $routeParams["pid"];
 
-        vm.updatePlayer = updatePlayer;
-        vm.findPlayer = findPlayer;
+        vm.updateBlog = updateBlog;
+        vm.findBlog = findBlog;
 
         function init() {
-            findPlayer(vm.playerId);
+            findBlog(vm.blogId);
         }
         init();
 
-        function updatePlayer(player) {
-            var promise = PlayerService.updatePlayer(player._id, player);
+        function updateBlog(blog) {
+            var promise = BlogService.updateBlog(blog._id, blog);
             promise.then(function(_) {
-                alert("player has been updated");
+                alert("blog has been updated");
             });
         }
 
-        function findPlayer(pid) {
-            var promise = PlayerService.findPlayer(pid);
+        function findBlog(pid) {
+            var promise = BlogService.findBlog(pid);
             promise.then(function(result) {
                 console.log(result.data);
-                vm.player = result.data;
+                vm.blog = result.data;
             });
         }
     }
