@@ -2,8 +2,11 @@ module.exports = function(){
     var mongoose = require("mongoose");
 
     var PlayerHistorySchema = mongoose.Schema({
-            name : String,
-            date : Date
+
+            playerId: { type: mongoose.Schema.Types.ObjectId, ref: 'Player' },
+            date : Date,
+            type: String,
+            description:String
         },
         {collection : 'rugby.playerHistory'});
 

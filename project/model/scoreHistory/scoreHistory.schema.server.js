@@ -3,9 +3,10 @@ module.exports = function(){
 
     var ScoreHistorySchema = mongoose.Schema({
             id : Number,
-            // game:
-            //player:
-            minute: Number
+            game: { type: mongoose.Schema.Types.ObjectId, ref: 'Game' },
+            player: { type: mongoose.Schema.Types.ObjectId, ref: 'Player' },
+            minute: Number,
+            description: String
         },
         {collection : 'rugby.scoreHistory'});
 

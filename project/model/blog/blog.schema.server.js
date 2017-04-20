@@ -5,7 +5,9 @@ module.exports = function(){
             id : Number,
             date: Date,
             type: String,
-            content: String
+            content: String,
+            event:{ type: mongoose.Schema.Types.ObjectId, ref: 'Event' },
+            game:{ type: mongoose.Schema.Types.ObjectId, ref: 'Game' }
 
         },
         {collection : 'rugby.blog'});
