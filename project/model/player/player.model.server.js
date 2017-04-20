@@ -16,14 +16,17 @@ module.exports = function() {
     return api;
 
     function createPlayer(newPlayer) {
+        console.log("in the mainframe!");
         var deferred = q.defer();
         PlayerModel.create(newPlayer , function(err,user){
             if(err){
+
                 deferred.reject(err);
             }else{
                 deferred.resolve(user);
             }
         });
+        console.log("should work");
         return deferred.promise;
     }
 

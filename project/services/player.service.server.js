@@ -6,6 +6,7 @@ module.exports = function(app, model) {
     app.get('/api/player/:pid', findPlayer);
 
     function createPlayer(req, res) {
+        console.log("creation!");
         var newPlayer = req.body;
         model.playerModel.createPlayer(newPlayer)
             .then(function(player){

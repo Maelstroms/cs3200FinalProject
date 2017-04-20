@@ -1,6 +1,5 @@
 
-<body>
-
+<div>
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
@@ -10,7 +9,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Project name</a>
+            <a class="navbar-brand" href="#">Northeastern Men's Rugby</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <form class="navbar-form navbar-right">
@@ -43,25 +42,27 @@
 
                 </li>
             </ol>
-            <div ng-repeat="player in model.players">
-                <li class="list-group-item">
-                    <div class="row">
-                        <div class="col-xs-10">
-                            {{player.name}}
+            <ul class="list-group">
+                <div ng-repeat="player in model.players">
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="col-md-4">
+                                {{player.name}}
+                            </div>
+                            <div class="col-xs-1">
+                                <a href="#!/player/{{player._id}}">
+                                    <span class="glyphicon glyphicon-cog pull-right"></span>
+                                </a>
+                            </div>
+                            <div class="col-xs-1">
+                                <a ng-click="model.deletePlayer(player._id)" href="#!/login">
+                                    <span class="glyphicon glyphicon-remove pull-right"></span>
+                                </a>
+                            </div>
                         </div>
-                        <div class="col-xs-1">
-                            <a href="#!/player/{{player._id}}">
-                                <span class="glyphicon glyphicon-cog pull-right"></span>
-                            </a>
-                        </div>
-                        <div class="col-xs-1">
-                            <a ng-click="model.deletePlayer(player._id)" href="#!/login">
-                                <span class="glyphicon glyphicon-remove pull-right"></span>
-                            </a>
-                        </div>
-                    </div>
-                </li>
-            </div>
+                    </li>
+                </div>
+            </ul>
         </div>
         <div class="col-md-6">
             <h2>Events</h2>
@@ -73,10 +74,12 @@
         </div>
     </div>
 
+
     <hr>
 
     <footer>
         <p>&copy; Company 2014</p>
     </footer>
 </div>
-</body>
+
+</div>
