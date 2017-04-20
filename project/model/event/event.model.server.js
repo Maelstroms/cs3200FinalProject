@@ -1,38 +1,35 @@
 module.exports = function() {
     var model = {};
     var mongoose = require("mongoose");
-    var PlayerSchema = require("./player.schema.server")();
-    var PlayerModel  = mongoose.model("PlayerModel", PlayerSchema);
+    var EventSchema = require("./event.schema.server")();
+    var EventModel  = mongoose.model("EventModel", EventSchema);
     var q = require("q");
 
     var api = {
-        "createPlayer": createPlayer,
-        "deletePlayer": deletePlayer,
-        "findAllPlayers": findAllPlayers,
-        "updatePlayer": updatePlayer,
-        "findPlayer": findPlayer,
+        "createEvent": createEvent,
+        "deleteEvent": deleteEvent,
+        "findAllEvents": findAllEvents,
+        "updateEvent": updateEvent,
+        "findEvent": findEvent,
         "setModel" : setModel
     };
     return api;
 
-    function createPlayer(newPlayer) {
-        console.log("in the mainframe!");
+    function createEvent(newEvent) {
         var deferred = q.defer();
-        PlayerModel.create(newPlayer , function(err,user){
+        EventModel.create(newEvent , function(err,user){
             if(err){
-
                 deferred.reject(err);
             }else{
                 deferred.resolve(user);
             }
         });
-        console.log("should work");
         return deferred.promise;
     }
 
-    function deletePlayer(pid) {
+    function deleteEvent(pid) {
         var deferred = q.defer();
-        PlayerModel.remove({"_id" : pid}, function(err,user){
+        EventModel.remove({"_id" : pid}, function(err,user){
                 if(err){
                     deferred.reject(err);
                 }else{
@@ -42,63 +39,63 @@ module.exports = function() {
         return deferred.promise;
     }
 
-    function updatePlayer(pid, player) {
+    function updateEvent(pid, event) {
 
         var deferred = q.defer();
-        PlayerModel.update({"_id": pid}, {$set: player}, {multi: true}, function(err, player) {
+        EventModel.update({"_id": pid}, {$set: event}, {multi: true}, function(err, event) {
             if (err) {
                 deffered.reject(err);
             }
             else {
-                deferred.resolve(player);
+                deferred.resolve(event);
             }
         });
         return deferred.promise;
     }
 
-    function findPlayer(pid) {
+    function findEvent(pid) {
         var deferred = q.defer();
-        PlayerModel.findOne({'_id': pid}, function(err,player) {
+        EventModel.findOne({'_id': pid}, function(err,event) {
             if (err) {
                 deferred.reject(err);
             } else {
-                deferred.resolve(player);
+                deferred.resolve(event);
             }
         });
         return deferred.promise;
     }
 
-    function findAllPlayers(){
+    function findAllEvents(){
         var deferred = q.defer();
-        PlayerModel.find({},function(err,players){
+        EventModel.find({},function(err,events){
             if(err){
                 deferred.reject(err);
             }else{
-                deferred.resolve(players);
+                deferred.resolve(events);
             }
         });
         return deferred.promise;
     }
 
-    function findPlayer(pid) {
+    function findEvent(pid) {
         var deferred = q.defer();
-        PlayerModel.findOne({'_id': pid}, function(err,player) {
+        EventModel.findOne({'_id': pid}, function(err,event) {
             if (err) {
                 deferred.reject(err);
             } else {
-                deferred.resolve(player);
+                deferred.resolve(event);
             }
         });
         return deferred.promise;
     }
 
-    function findAllPlayers(){
+    function findAllEvents(){
         var deferred = q.defer();
-        PlayerModel.find({},function(err,players){
+        EventModel.find({},function(err,events){
             if(err){
                 deferred.reject(err);
             }else{
-                deferred.resolve(players);
+                deferred.resolve(events);
             }
         });
         return deferred.promise;

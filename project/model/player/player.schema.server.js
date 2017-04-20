@@ -2,7 +2,11 @@ module.exports = function(){
     var mongoose = require("mongoose");
 
     var PlayerSchema = mongoose.Schema({
-            name : String
+            id: Number,
+            name : String,
+            height: Number,
+            weight: Number,
+            season: Number
         },
         {collection : 'rugby.players'});
 

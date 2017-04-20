@@ -1,38 +1,35 @@
 module.exports = function() {
     var model = {};
     var mongoose = require("mongoose");
-    var PlayerSchema = require("./player.schema.server")();
-    var PlayerModel  = mongoose.model("PlayerModel", PlayerSchema);
+    var BlogSchema = require("./blog.schema.server")();
+    var BlogModel  = mongoose.model("BlogModel", BlogSchema);
     var q = require("q");
 
     var api = {
-        "createPlayer": createPlayer,
-        "deletePlayer": deletePlayer,
-        "findAllPlayers": findAllPlayers,
-        "updatePlayer": updatePlayer,
-        "findPlayer": findPlayer,
+        "createBlog": createBlog,
+        "deleteBlog": deleteBlog,
+        "findAllBlogs": findAllBlogs,
+        "updateBlog": updateBlog,
+        "findBlog": findBlog,
         "setModel" : setModel
     };
     return api;
 
-    function createPlayer(newPlayer) {
-        console.log("in the mainframe!");
+    function createBlog(newBlog) {
         var deferred = q.defer();
-        PlayerModel.create(newPlayer , function(err,user){
+        BlogModel.create(newBlog , function(err,user){
             if(err){
-
                 deferred.reject(err);
             }else{
                 deferred.resolve(user);
             }
         });
-        console.log("should work");
         return deferred.promise;
     }
 
-    function deletePlayer(pid) {
+    function deleteBlog(pid) {
         var deferred = q.defer();
-        PlayerModel.remove({"_id" : pid}, function(err,user){
+        BlogModel.remove({"_id" : pid}, function(err,user){
                 if(err){
                     deferred.reject(err);
                 }else{
@@ -42,63 +39,63 @@ module.exports = function() {
         return deferred.promise;
     }
 
-    function updatePlayer(pid, player) {
+    function updateBlog(pid, blog) {
 
         var deferred = q.defer();
-        PlayerModel.update({"_id": pid}, {$set: player}, {multi: true}, function(err, player) {
+        BlogModel.update({"_id": pid}, {$set: blog}, {multi: true}, function(err, blog) {
             if (err) {
                 deffered.reject(err);
             }
             else {
-                deferred.resolve(player);
+                deferred.resolve(blog);
             }
         });
         return deferred.promise;
     }
 
-    function findPlayer(pid) {
+    function findBlog(pid) {
         var deferred = q.defer();
-        PlayerModel.findOne({'_id': pid}, function(err,player) {
+        BlogModel.findOne({'_id': pid}, function(err,blog) {
             if (err) {
                 deferred.reject(err);
             } else {
-                deferred.resolve(player);
+                deferred.resolve(blog);
             }
         });
         return deferred.promise;
     }
 
-    function findAllPlayers(){
+    function findAllBlogs(){
         var deferred = q.defer();
-        PlayerModel.find({},function(err,players){
+        BlogModel.find({},function(err,blogs){
             if(err){
                 deferred.reject(err);
             }else{
-                deferred.resolve(players);
+                deferred.resolve(blogs);
             }
         });
         return deferred.promise;
     }
 
-    function findPlayer(pid) {
+    function findBlog(pid) {
         var deferred = q.defer();
-        PlayerModel.findOne({'_id': pid}, function(err,player) {
+        BlogModel.findOne({'_id': pid}, function(err,blog) {
             if (err) {
                 deferred.reject(err);
             } else {
-                deferred.resolve(player);
+                deferred.resolve(blog);
             }
         });
         return deferred.promise;
     }
 
-    function findAllPlayers(){
+    function findAllBlogs(){
         var deferred = q.defer();
-        PlayerModel.find({},function(err,players){
+        BlogModel.find({},function(err,blogs){
             if(err){
                 deferred.reject(err);
             }else{
-                deferred.resolve(players);
+                deferred.resolve(blogs);
             }
         });
         return deferred.promise;

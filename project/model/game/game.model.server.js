@@ -1,38 +1,35 @@
 module.exports = function() {
     var model = {};
     var mongoose = require("mongoose");
-    var PlayerSchema = require("./player.schema.server")();
-    var PlayerModel  = mongoose.model("PlayerModel", PlayerSchema);
+    var GameSchema = require("./game.schema.server")();
+    var GameModel  = mongoose.model("GameModel", GameSchema);
     var q = require("q");
 
     var api = {
-        "createPlayer": createPlayer,
-        "deletePlayer": deletePlayer,
-        "findAllPlayers": findAllPlayers,
-        "updatePlayer": updatePlayer,
-        "findPlayer": findPlayer,
+        "createGame": createGame,
+        "deleteGame": deleteGame,
+        "findAllGames": findAllGames,
+        "updateGame": updateGame,
+        "findGame": findGame,
         "setModel" : setModel
     };
     return api;
 
-    function createPlayer(newPlayer) {
-        console.log("in the mainframe!");
+    function createGame(newGame) {
         var deferred = q.defer();
-        PlayerModel.create(newPlayer , function(err,user){
+        GameModel.create(newGame , function(err,user){
             if(err){
-
                 deferred.reject(err);
             }else{
                 deferred.resolve(user);
             }
         });
-        console.log("should work");
         return deferred.promise;
     }
 
-    function deletePlayer(pid) {
+    function deleteGame(pid) {
         var deferred = q.defer();
-        PlayerModel.remove({"_id" : pid}, function(err,user){
+        GameModel.remove({"_id" : pid}, function(err,user){
                 if(err){
                     deferred.reject(err);
                 }else{
@@ -42,63 +39,63 @@ module.exports = function() {
         return deferred.promise;
     }
 
-    function updatePlayer(pid, player) {
+    function updateGame(pid, game) {
 
         var deferred = q.defer();
-        PlayerModel.update({"_id": pid}, {$set: player}, {multi: true}, function(err, player) {
+        GameModel.update({"_id": pid}, {$set: game}, {multi: true}, function(err, game) {
             if (err) {
                 deffered.reject(err);
             }
             else {
-                deferred.resolve(player);
+                deferred.resolve(game);
             }
         });
         return deferred.promise;
     }
 
-    function findPlayer(pid) {
+    function findGame(pid) {
         var deferred = q.defer();
-        PlayerModel.findOne({'_id': pid}, function(err,player) {
+        GameModel.findOne({'_id': pid}, function(err,game) {
             if (err) {
                 deferred.reject(err);
             } else {
-                deferred.resolve(player);
+                deferred.resolve(game);
             }
         });
         return deferred.promise;
     }
 
-    function findAllPlayers(){
+    function findAllGames(){
         var deferred = q.defer();
-        PlayerModel.find({},function(err,players){
+        GameModel.find({},function(err,games){
             if(err){
                 deferred.reject(err);
             }else{
-                deferred.resolve(players);
+                deferred.resolve(games);
             }
         });
         return deferred.promise;
     }
 
-    function findPlayer(pid) {
+    function findGame(pid) {
         var deferred = q.defer();
-        PlayerModel.findOne({'_id': pid}, function(err,player) {
+        GameModel.findOne({'_id': pid}, function(err,game) {
             if (err) {
                 deferred.reject(err);
             } else {
-                deferred.resolve(player);
+                deferred.resolve(game);
             }
         });
         return deferred.promise;
     }
 
-    function findAllPlayers(){
+    function findAllGames(){
         var deferred = q.defer();
-        PlayerModel.find({},function(err,players){
+        GameModel.find({},function(err,games){
             if(err){
                 deferred.reject(err);
             }else{
-                deferred.resolve(players);
+                deferred.resolve(games);
             }
         });
         return deferred.promise;

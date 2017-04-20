@@ -1,38 +1,35 @@
 module.exports = function() {
     var model = {};
     var mongoose = require("mongoose");
-    var PlayerSchema = require("./player.schema.server")();
-    var PlayerModel  = mongoose.model("PlayerModel", PlayerSchema);
+    var RosterSchema = require("./roster.schema.server")();
+    var RosterModel  = mongoose.model("RosterModel", RosterSchema);
     var q = require("q");
 
     var api = {
-        "createPlayer": createPlayer,
-        "deletePlayer": deletePlayer,
-        "findAllPlayers": findAllPlayers,
-        "updatePlayer": updatePlayer,
-        "findPlayer": findPlayer,
+        "createRoster": createRoster,
+        "deleteRoster": deleteRoster,
+        "findAllRosters": findAllRosters,
+        "updateRoster": updateRoster,
+        "findRoster": findRoster,
         "setModel" : setModel
     };
     return api;
 
-    function createPlayer(newPlayer) {
-        console.log("in the mainframe!");
+    function createRoster(newRoster) {
         var deferred = q.defer();
-        PlayerModel.create(newPlayer , function(err,user){
+        RosterModel.create(newRoster , function(err,user){
             if(err){
-
                 deferred.reject(err);
             }else{
                 deferred.resolve(user);
             }
         });
-        console.log("should work");
         return deferred.promise;
     }
 
-    function deletePlayer(pid) {
+    function deleteRoster(pid) {
         var deferred = q.defer();
-        PlayerModel.remove({"_id" : pid}, function(err,user){
+        RosterModel.remove({"_id" : pid}, function(err,user){
                 if(err){
                     deferred.reject(err);
                 }else{
@@ -42,63 +39,63 @@ module.exports = function() {
         return deferred.promise;
     }
 
-    function updatePlayer(pid, player) {
+    function updateRoster(pid, roster) {
 
         var deferred = q.defer();
-        PlayerModel.update({"_id": pid}, {$set: player}, {multi: true}, function(err, player) {
+        RosterModel.update({"_id": pid}, {$set: roster}, {multi: true}, function(err, roster) {
             if (err) {
                 deffered.reject(err);
             }
             else {
-                deferred.resolve(player);
+                deferred.resolve(roster);
             }
         });
         return deferred.promise;
     }
 
-    function findPlayer(pid) {
+    function findRoster(pid) {
         var deferred = q.defer();
-        PlayerModel.findOne({'_id': pid}, function(err,player) {
+        RosterModel.findOne({'_id': pid}, function(err,roster) {
             if (err) {
                 deferred.reject(err);
             } else {
-                deferred.resolve(player);
+                deferred.resolve(roster);
             }
         });
         return deferred.promise;
     }
 
-    function findAllPlayers(){
+    function findAllRosters(){
         var deferred = q.defer();
-        PlayerModel.find({},function(err,players){
+        RosterModel.find({},function(err,rosters){
             if(err){
                 deferred.reject(err);
             }else{
-                deferred.resolve(players);
+                deferred.resolve(rosters);
             }
         });
         return deferred.promise;
     }
 
-    function findPlayer(pid) {
+    function findRoster(pid) {
         var deferred = q.defer();
-        PlayerModel.findOne({'_id': pid}, function(err,player) {
+        RosterModel.findOne({'_id': pid}, function(err,roster) {
             if (err) {
                 deferred.reject(err);
             } else {
-                deferred.resolve(player);
+                deferred.resolve(roster);
             }
         });
         return deferred.promise;
     }
 
-    function findAllPlayers(){
+    function findAllRosters(){
         var deferred = q.defer();
-        PlayerModel.find({},function(err,players){
+        RosterModel.find({},function(err,rosters){
             if(err){
                 deferred.reject(err);
             }else{
-                deferred.resolve(players);
+                deferred.resolve(rosters);
             }
         });
         return deferred.promise;

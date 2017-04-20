@@ -1,38 +1,35 @@
 module.exports = function() {
     var model = {};
     var mongoose = require("mongoose");
-    var PlayerSchema = require("./player.schema.server")();
-    var PlayerModel  = mongoose.model("PlayerModel", PlayerSchema);
+    var ScoreHistorySchema = require("./scoreHistory.schema.server")();
+    var ScoreHistoryModel  = mongoose.model("ScoreHistoryModel", ScoreHistorySchema);
     var q = require("q");
 
     var api = {
-        "createPlayer": createPlayer,
-        "deletePlayer": deletePlayer,
-        "findAllPlayers": findAllPlayers,
-        "updatePlayer": updatePlayer,
-        "findPlayer": findPlayer,
+        "createScoreHistory": createScoreHistory,
+        "deleteScoreHistory": deleteScoreHistory,
+        "findAllScoreHistorys": findAllScoreHistorys,
+        "updateScoreHistory": updateScoreHistory,
+        "findScoreHistory": findScoreHistory,
         "setModel" : setModel
     };
     return api;
 
-    function createPlayer(newPlayer) {
-        console.log("in the mainframe!");
+    function createScoreHistory(newScoreHistory) {
         var deferred = q.defer();
-        PlayerModel.create(newPlayer , function(err,user){
+        ScoreHistoryModel.create(newScoreHistory , function(err,user){
             if(err){
-
                 deferred.reject(err);
             }else{
                 deferred.resolve(user);
             }
         });
-        console.log("should work");
         return deferred.promise;
     }
 
-    function deletePlayer(pid) {
+    function deleteScoreHistory(pid) {
         var deferred = q.defer();
-        PlayerModel.remove({"_id" : pid}, function(err,user){
+        ScoreHistoryModel.remove({"_id" : pid}, function(err,user){
                 if(err){
                     deferred.reject(err);
                 }else{
@@ -42,63 +39,63 @@ module.exports = function() {
         return deferred.promise;
     }
 
-    function updatePlayer(pid, player) {
+    function updateScoreHistory(pid, scoreHistory) {
 
         var deferred = q.defer();
-        PlayerModel.update({"_id": pid}, {$set: player}, {multi: true}, function(err, player) {
+        ScoreHistoryModel.update({"_id": pid}, {$set: scoreHistory}, {multi: true}, function(err, scoreHistory) {
             if (err) {
                 deffered.reject(err);
             }
             else {
-                deferred.resolve(player);
+                deferred.resolve(scoreHistory);
             }
         });
         return deferred.promise;
     }
 
-    function findPlayer(pid) {
+    function findScoreHistory(pid) {
         var deferred = q.defer();
-        PlayerModel.findOne({'_id': pid}, function(err,player) {
+        ScoreHistoryModel.findOne({'_id': pid}, function(err,scoreHistory) {
             if (err) {
                 deferred.reject(err);
             } else {
-                deferred.resolve(player);
+                deferred.resolve(scoreHistory);
             }
         });
         return deferred.promise;
     }
 
-    function findAllPlayers(){
+    function findAllScoreHistorys(){
         var deferred = q.defer();
-        PlayerModel.find({},function(err,players){
+        ScoreHistoryModel.find({},function(err,scoreHistorys){
             if(err){
                 deferred.reject(err);
             }else{
-                deferred.resolve(players);
+                deferred.resolve(scoreHistorys);
             }
         });
         return deferred.promise;
     }
 
-    function findPlayer(pid) {
+    function findScoreHistory(pid) {
         var deferred = q.defer();
-        PlayerModel.findOne({'_id': pid}, function(err,player) {
+        ScoreHistoryModel.findOne({'_id': pid}, function(err,scoreHistory) {
             if (err) {
                 deferred.reject(err);
             } else {
-                deferred.resolve(player);
+                deferred.resolve(scoreHistory);
             }
         });
         return deferred.promise;
     }
 
-    function findAllPlayers(){
+    function findAllScoreHistorys(){
         var deferred = q.defer();
-        PlayerModel.find({},function(err,players){
+        ScoreHistoryModel.find({},function(err,scoreHistorys){
             if(err){
                 deferred.reject(err);
             }else{
-                deferred.resolve(players);
+                deferred.resolve(scoreHistorys);
             }
         });
         return deferred.promise;

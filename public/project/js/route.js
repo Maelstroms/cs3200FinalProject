@@ -6,12 +6,24 @@
     function configuration($routeProvider) {
         $routeProvider
             .when("/login", {
-                templateUrl: "views/player-list.view.client.html",
+                templateUrl: "views/User/login.view.client.html",
+                controller: "LoginController",
+                // templateUrl: "views/players/player-list.view.client.html",
+                // controller: 'PlayerListController',
+                controllerAs: 'model'
+            })
+            .when("/register", {
+                templateUrl: "views/user/register.view.client.html",
+                controller: "RegisterController",
+                controllerAs: "model"
+            })
+            .when("/player", {
+                templateUrl: "views/players/player-list.view.client.html",
                 controller: 'PlayerListController',
                 controllerAs: 'model'
             })
-            .when("/login/:pid", {
-                templateUrl: "views/player-edit.view.client.html",
+            .when("/player/:pid", {
+                templateUrl: "views/players/player-edit.view.client.html",
                 controller: 'PlayerEditController',
                 controllerAs: 'model'
             })
