@@ -7,9 +7,8 @@
         $routeProvider
             .when("/login", {
                 templateUrl: "views/User/login.view.client.html",
-                controller: "LoginController",
                 // templateUrl: "views/players/player-list.view.client.html",
-                // controller: 'PlayerListController',
+                controller: 'PlayerListController',
                 controllerAs: 'model'
             })
             .when("/register", {

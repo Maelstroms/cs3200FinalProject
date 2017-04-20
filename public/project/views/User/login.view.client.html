@@ -37,11 +37,25 @@
     <div class="row">
         <div class="col-md-6">
             <h2>Current Players</h2>
-            <ol>
-                <li>
-
+            <div ng-repeat="player in model.players">
+                <li class="list-group-item">
+                    <div class="row">
+                        <div class="col-xs-10">
+                            {{player.name}}
+                        </div>
+                        <div class="col-xs-1">
+                            <a href="#!/player/{{player._id}}">
+                                <span class="glyphicon glyphicon-cog pull-right"></span>
+                            </a>
+                        </div>
+                        <div class="col-xs-1">
+                            <a ng-click="model.deletePlayer(player._id)" href="#!/login">
+                                <span class="glyphicon glyphicon-remove pull-right"></span>
+                            </a>
+                        </div>
+                    </div>
                 </li>
-            </ol>
+            </div>
             <ul class="list-group">
                 <div ng-repeat="player in model.players">
                     <li class="list-group-item">
